@@ -1,7 +1,8 @@
-Employee Management System
-Overview
+# Employee Management System
 
-The Employee Management System is a C# Console Application designed to practice .NET Collections and Object-Oriented Programming (OOP). It simulates a simple employee management workflow where employees are added to an onboarding queue, processed into active employees, assigned to departments, and managed through different collection types
+## Overview
+
+The **Employee Management System** is a **C# Console Application** designed to practice **.NET Collections** and **Object-Oriented Programming (OOP)** concepts. It simulates a simple employee management workflow where employees are added to an onboarding queue, processed into active employees, assigned to departments, and managed using different collection types.
 
 ---
 
