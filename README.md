@@ -1,10 +1,7 @@
-# Company Management System
+Employee Management System
+Overview
 
-## Overview
-
-The **Company Management System** is a C# Console Application developed to practice the most commonly used **Collections** in .NET while applying Object-Oriented Programming concepts.
-
-The system simulates a simple company management workflow where employees are added to an onboarding queue, processed into active employees, organized into departments, and managed through different collection types.
+The Employee Management System is a C# Console Application designed to practice .NET Collections and Object-Oriented Programming (OOP). It simulates a simple employee management workflow where employees are added to an onboarding queue, processed into active employees, assigned to departments, and managed through different collection types
 
 ---
 
