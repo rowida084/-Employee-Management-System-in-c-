@@ -1,4 +1,4 @@
-﻿using ConsoleApp4.Models;
+using ConsoleApp4.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +24,12 @@ namespace ConsoleApp4.Services
                     return true;
                 }
             }
+             foreach (clsEmployee emp in onboarding)
+    {
+        if (emp.ID == id)
+            return true;
+    }
+
             return false;
         }
 
@@ -45,13 +51,9 @@ namespace ConsoleApp4.Services
         }
         public bool addOnboardingEmployee(clsEmployee newEmp)
         {
-            foreach(clsEmployee emp in activeEmployees)
-            {
-                if(emp.ID== newEmp.ID)
-                {
-                    return false;
-                }
-            }
+            if (IDIsFound(newEmp.ID))
+                return false;
+
             onboarding.Enqueue(newEmp);
             actionHistory.Push(newEmp);
             return true;
