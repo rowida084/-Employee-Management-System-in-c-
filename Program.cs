@@ -1,4 +1,4 @@
-﻿using ConsoleApp4.Models;
+using ConsoleApp4.Models;
 using ConsoleApp4.Services;
 using System;
 using System.Collections.Generic;
@@ -111,7 +111,7 @@ namespace ConsoleApp4
                         }
                         Console.Write("Enter Department ID : ");
                         int id = int.Parse(Console.ReadLine());
-                 while(company.depatrmentIDIsFound(id))
+                        while(company.depatrmentIDIsFound(id))
                         {
                             Console.WriteLine("This ID Of Department is Already Exists!");
                             Console.Write("Enter Department ID : ");
@@ -215,6 +215,9 @@ namespace ConsoleApp4
                         Console.WriteLine();
                         break;
                     }
+                default:
+                    Console.WriteLine("Invalid Choice");
+                    break;
             }
         }
         static void Main(string[] args)
