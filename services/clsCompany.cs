@@ -35,14 +35,15 @@ namespace ConsoleApp4.Services
 
         public bool departmentNameIsFound(string departmentName)
         {
-            foreach(KeyValuePair<int,string> department in departments)
-            {
-                if(department.Value == departmentName)
-                {
-                    return true;
-                }
-            }
-            return false;
+          return   departments.ContainsValue(departmentName);
+            //foreach(KeyValuePair<int,string> department in departments)
+            //{
+            //    if(department.Value == departmentName)
+            //    {
+            //        return true;
+            //    }
+            //}
+            //return false;
         }
 
         public bool depatrmentIDIsFound(int departmentID)
