@@ -13,7 +13,7 @@ namespace ConsoleApp4.Services
         public Stack<clsEmployee> actionHistory=new Stack<clsEmployee>();
         public List<clsEmployee> activeEmployees=new List<clsEmployee>();
         public Dictionary<int, string> departments=new Dictionary<int, string>();
-        public HashSet<string> uniqueSkills=new HashSet<string>();
+        public HashSet<string> uniqueSkills=new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
         public bool IDIsFound(int id )
         {
@@ -35,15 +35,15 @@ namespace ConsoleApp4.Services
 
         public bool departmentNameIsFound(string departmentName)
         {
-          return   departments.ContainsValue(departmentName);
-            //foreach(KeyValuePair<int,string> department in departments)
-            //{
-            //    if(department.Value == departmentName)
-            //    {
-            //        return true;
-            //    }
-            //}
-            //return false;
+
+            foreach (KeyValuePair<int, string> department in departments)
+            {
+                if (department.Value.Equals(departmentName,StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public bool depatrmentIDIsFound(int departmentID)
@@ -103,7 +103,7 @@ namespace ConsoleApp4.Services
         {
             foreach(clsEmployee employee in activeEmployees)
             {
-                if(employee.name== name)
+                if(employee.name.Equals(name,StringComparison.OrdinalIgnoreCase))
                 {
                     return (employee);
                 }
@@ -116,7 +116,7 @@ namespace ConsoleApp4.Services
             
             foreach(KeyValuePair<int,string>item in departments)
             {
-                if(item.Value== departmentName)
+                if(item.Value.Equals(departmentName,StringComparison.OrdinalIgnoreCase))
                 {
                     return  item.Key;
                 }
