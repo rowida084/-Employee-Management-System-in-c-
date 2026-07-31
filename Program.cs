@@ -1,6 +1,7 @@
 using ConsoleApp4.Models;
 using ConsoleApp4.Services;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,33 +12,36 @@ namespace ConsoleApp4
 
     internal class Program
     {
-        private enum enOption { enaddEmployeeOnboarding=1,enaddDeparment =3,enProcessNextEmployee=2,
-        enSearchEmpByID=4,enSearchEmpByName=5,enPrintEmps=6,enCalcSalaryAvrage=7,
-        enEmpsReport=8,enPrintActionHistory=9,enPrintUniqueSkills=10}
+        private enum enOption
+        {
+            enaddEmployeeOnboarding = 1, enaddDeparment = 3, enProcessNextEmployee = 2,
+            enSearchEmpByID = 4, enSearchEmpByName = 5, enPrintEmps = 6, enCalcSalaryAvrage = 7,
+            enEmpsReport = 8, enPrintActionHistory = 9, enPrintUniqueSkills = 10
+        }
 
-      static  private clsEmployee _readEmployee(clsCompany company)
+        static private clsEmployee _readEmployee(clsCompany company)
         {
             Console.Write("Enter Name : ");
             string name = Console.ReadLine();
-          
-                Console.Write("Enter ID : ");
-              int  id = int.Parse(Console.ReadLine());
-            
+
+            Console.Write("Enter ID : ");
+            int id = int.Parse(Console.ReadLine());
+
             while (company.IDIsFound(id))
             {
                 Console.WriteLine("This ID is Already Exists!");
                 Console.Write("Enter ID : ");
-                 id = int.Parse(Console.ReadLine());
+                id = int.Parse(Console.ReadLine());
             }
 
 
             Console.Write("Enter DepartmentID : ");
-            int departmentID= int.Parse(Console.ReadLine());
+            int departmentID = int.Parse(Console.ReadLine());
             Console.Write("Unique Skill : ");
-            string uniqueSkill= Console.ReadLine();
+            string uniqueSkill = Console.ReadLine();
             Console.Write("Enter Salary : ");
-            double salary=double.Parse(Console.ReadLine());
-            clsEmployee emp=new clsEmployee(name,id,departmentID,salary,uniqueSkill);
+            double salary = double.Parse(Console.ReadLine());
+            clsEmployee emp = new clsEmployee(name, id, departmentID, salary, uniqueSkill);
             return emp;
         }
 
@@ -80,9 +84,9 @@ namespace ConsoleApp4
             company.addActionEmployee();
             company.addActionEmployee();
         }
-        static private void _mainMenuPerformance(enOption choice,clsCompany company)
+        static private void _mainMenuPerformance(enOption choice, clsCompany company)
         {
-            switch(choice)
+            switch (choice)
             {
                 case enOption.enaddEmployeeOnboarding:
                     {
@@ -96,14 +100,14 @@ namespace ConsoleApp4
                         {
                             Console.WriteLine("This ID Is Already Exist!");
                         }
-                            break;
+                        break;
                     }
 
-                    case enOption.enaddDeparment:
+                case enOption.enaddDeparment:
                     {
                         Console.Write("Enter Department Name : ");
                         string departmentName = Console.ReadLine();
-                        while(company.departmentNameIsFound(departmentName))
+                        while (company.departmentNameIsFound(departmentName))
                         {
                             Console.WriteLine("This Name Of Department is Already Exists!");
                             Console.Write("Enter Another Department Name : ");
@@ -111,14 +115,14 @@ namespace ConsoleApp4
                         }
                         Console.Write("Enter Department ID : ");
                         int id = int.Parse(Console.ReadLine());
-                        while(company.depatrmentIDIsFound(id))
+                        while (company.depatrmentIDIsFound(id))
                         {
                             Console.WriteLine("This ID Of Department is Already Exists!");
                             Console.Write("Enter Department ID : ");
                             id = int.Parse(Console.ReadLine());
                         }
 
-                        if (company.addDepartment(id,departmentName))
+                        if (company.addDepartment(id, departmentName))
                         {
                             Console.WriteLine("Department Added Successfully!");
                         }
@@ -127,10 +131,10 @@ namespace ConsoleApp4
                             Console.WriteLine("This Department Already Exists!");
                         }
                         Console.WriteLine();
-                            break;
+                        break;
                     }
 
-                    case enOption.enProcessNextEmployee:
+                case enOption.enProcessNextEmployee:
                     {
                         if (company.addActionEmployee())
                         {
@@ -141,14 +145,14 @@ namespace ConsoleApp4
                             Console.WriteLine("Employee Failed To Be Added!");
                         }
                         Console.WriteLine();
-                            break;
+                        break;
                     }
 
-                    case enOption.enSearchEmpByID:
+                case enOption.enSearchEmpByID:
                     {
                         Console.Write("Enter Employee ID : ");
                         int id = int.Parse(Console.ReadLine());
-                       clsEmployee emp= company.searchEmployeeByID(id);
+                        clsEmployee emp = company.searchEmployeeByID(id);
                         if (emp != null)
                         {
                             emp.Print();
@@ -161,7 +165,7 @@ namespace ConsoleApp4
                         break;
                     }
 
-                    case enOption.enSearchEmpByName:
+                case enOption.enSearchEmpByName:
                     {
                         Console.Write("Enter Employee Name : ");
                         string empName = Console.ReadLine();
@@ -175,41 +179,41 @@ namespace ConsoleApp4
                             Console.WriteLine("This Employee Does Not Exist!");
                         }
                         Console.WriteLine();
-                            break;
+                        break;
                     }
 
-                    case enOption.enPrintEmps:
+                case enOption.enPrintEmps:
                     {
                         Console.Write("Enter Department Name : ");
-                        string  departmentName = Console.ReadLine();
-                      
-                       if( !company.printAllEmployeeByDepartment(departmentName))
+                        string departmentName = Console.ReadLine();
+
+                        if (!company.printAllEmployeeByDepartment(departmentName))
                             Console.WriteLine("This Department Does Not Have Any Employee");
                         Console.WriteLine();
                         break;
                     }
 
-                    case enOption.enCalcSalaryAvrage:
+                case enOption.enCalcSalaryAvrage:
                     {
                         Console.WriteLine($"Salary Average : {company.calcSalaryAverage()}");
                         Console.WriteLine();
                         break;
                     }
 
-                    case enOption.enEmpsReport:
+                case enOption.enEmpsReport:
                     {
                         company.numOfEmployeesInEachDepartmentReport();
                         Console.WriteLine();
                         break;
                     }
 
-                    case enOption.enPrintActionHistory:
+                case enOption.enPrintActionHistory:
                     {
                         company.printActionHistory();
                         Console.WriteLine();
                         break;
                     }
-                    case enOption.enPrintUniqueSkills:
+                case enOption.enPrintUniqueSkills:
                     {
                         company.printUniqueSkills();
                         Console.WriteLine();
@@ -222,9 +226,10 @@ namespace ConsoleApp4
         }
         static void Main(string[] args)
         {
-            clsCompany company= new clsCompany();
+            clsCompany company = new clsCompany();
             SeedData(company);
             int choice;
+
             do
             {
                 Console.WriteLine("========== Company Management ==========");
@@ -241,12 +246,21 @@ namespace ConsoleApp4
                 Console.WriteLine("0. Exit");
                 Console.WriteLine();
                 Console.Write("\nEnter your choice: ");
-                choice = Convert.ToInt32(Console.ReadLine());
+                choice =int.Parse(Console.ReadLine());
+                while(choice<0||choice>10)
+                {
+                    Console.WriteLine("inavailable option!");
+                    Console.WriteLine("Enter Your Choice: ");
+                    choice = int.Parse(Console.ReadLine());
+                }
                 Console.WriteLine();
                 Console.WriteLine();
-                _mainMenuPerformance((enOption)choice,company);
+                _mainMenuPerformance((enOption)choice, company);
             } while (choice != 0);
-          
+
+            
+           
         }
+
     }
 }
