@@ -16,7 +16,7 @@ namespace ConsoleApp4
         {
             enaddEmployeeOnboarding = 1, enaddDeparment = 3, enProcessNextEmployee = 2,
             enSearchEmpByID = 4, enSearchEmpByName = 5, enPrintEmps = 6, enCalcSalaryAvrage = 7,
-            enEmpsReport = 8, enPrintActionHistory = 9, enPrintUniqueSkills = 10
+            enEmpsReport = 8, enPrintActionHistory = 9, enPrintUniqueSkills = 10,enExite=0
         }
 
         static private clsEmployee _readEmployee(clsCompany company)
@@ -47,42 +47,50 @@ namespace ConsoleApp4
 
         static void SeedData(clsCompany company)
         {
+
             company.addDepartment(1, "HR");
             company.addDepartment(2, "IT");
             company.addDepartment(3, "Finance");
+            company.addDepartment(4, "Marketing");
+            company.addDepartment(5, "Sales");
+            company.addDepartment(6, "Customer Support");
 
-            clsEmployee emp1 = new clsEmployee(
-                "Ahmed",
-                101,
-                2,
-                8000,
-                "C#");
 
-            clsEmployee emp2 = new clsEmployee(
-                "Sara",
-                102,
-                1,
-                7000,
-                "Communication");
+            clsEmployee[] employees =
+            {
+        new clsEmployee("Ahmed Hassan",     101, 2, 12000, "C#"),
+        new clsEmployee("Sara Ali",         102, 1,  8000, "Recruitment"),
+        new clsEmployee("Omar Mohamed",     103, 3, 11000, "Excel"),
+        new clsEmployee("Mona Adel",        104, 2, 15000, "ASP.NET"),
+        new clsEmployee("Youssef Samy",     105, 5,  9000, "Negotiation"),
+        new clsEmployee("Nour Ahmed",       106, 2, 13000, "SQL"),
+        new clsEmployee("Khaled Tarek",     107, 4, 10000, "Photoshop"),
+        new clsEmployee("Salma Mostafa",    108, 3, 14000, "Power BI"),
+        new clsEmployee("Hana Ibrahim",     109, 6,  7500, "Customer Service"),
+        new clsEmployee("Karim Magdy",      110, 2, 16000, "C#"),
+        new clsEmployee("Mariam Hany",      111, 4, 11500, "Content Writing"),
+        new clsEmployee("Amr Essam",        112, 5, 10500, "Sales"),
+        new clsEmployee("Aya Nabil",        113, 1,  8500, "Communication"),
+        new clsEmployee("Mahmoud Adel",     114, 2, 17000, "SQL"),
+        new clsEmployee("Reem Wael",        115, 6,  7800, "Problem Solving"),
+        new clsEmployee("Mostafa Ashraf",   116, 2, 14500, "ASP.NET"),
+        new clsEmployee("Laila Sherif",     117, 3, 13500, "Excel"),
+        new clsEmployee("Mohamed Gamal",    118, 2, 18000, "C#"),
+        new clsEmployee("Farah Khaled",     119, 4,  9800, "Photoshop"),
+        new clsEmployee("Ziad Hassan",      120, 5, 12500, "Negotiation")
+    };
 
-            clsEmployee emp3 = new clsEmployee(
-                "Omar",
-                103,
-                3,
-                9500,
-                "Excel");
 
-            company.addOnboardingEmployee(emp1);
-            company.addOnboardingEmployee(emp2);
-            company.addOnboardingEmployee(emp3);
+            foreach (clsEmployee emp in employees)
+            {
+                company.addOnboardingEmployee(emp);
+                company.addSkill(emp);
+            }
 
-            company.addSkill(emp1);
-            company.addSkill(emp2);
-            company.addSkill(emp3);
-
-            company.addActionEmployee();
-            company.addActionEmployee();
-            company.addActionEmployee();
+            for (int i = 0; i < 15; i++)
+            {
+                company.addActionEmployee();
+            }
         }
         static private void _mainMenuPerformance(enOption choice, clsCompany company)
         {
@@ -219,6 +227,10 @@ namespace ConsoleApp4
                         Console.WriteLine();
                         break;
                     }
+                case enOption.enExite:
+                    {
+                        return;
+                    }
                 default:
                     Console.WriteLine("Invalid Choice");
                     break;
@@ -226,6 +238,7 @@ namespace ConsoleApp4
         }
         static void Main(string[] args)
         {
+            
             clsCompany company = new clsCompany();
             SeedData(company);
             int choice;
@@ -246,8 +259,8 @@ namespace ConsoleApp4
                 Console.WriteLine("0. Exit");
                 Console.WriteLine();
                 Console.Write("\nEnter your choice: ");
-                choice =int.Parse(Console.ReadLine());
-                while(choice<0||choice>10)
+                choice = int.Parse(Console.ReadLine());
+                while (choice < 0 || choice > 10)
                 {
                     Console.WriteLine("inavailable option!");
                     Console.WriteLine("Enter Your Choice: ");
@@ -257,10 +270,9 @@ namespace ConsoleApp4
                 Console.WriteLine();
                 _mainMenuPerformance((enOption)choice, company);
             } while (choice != 0);
-
             
-           
-        }
 
+        }
+      
     }
 }
