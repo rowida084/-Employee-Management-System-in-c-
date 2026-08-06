@@ -236,12 +236,25 @@ namespace ConsoleApp4
                     break;
             }
         }
+
+        static private short _readChoice()
+        {
+            Console.Write("Enter Your Choice: ");
+            short choice=short.Parse(Console.ReadLine());
+            while(choice < 0 || choice > 10)
+            {
+                Console.WriteLine("Inavailable Option!");
+                Console.Write("Enter Another Choice: ");
+                choice = short.Parse(Console.ReadLine());
+            }
+            return choice;
+        }
         static void Main(string[] args)
         {
-            
+
             clsCompany company = new clsCompany();
             SeedData(company);
-            int choice;
+            short choice;
 
             do
             {
@@ -259,20 +272,14 @@ namespace ConsoleApp4
                 Console.WriteLine("0. Exit");
                 Console.WriteLine();
                 Console.Write("\nEnter your choice: ");
-                choice = int.Parse(Console.ReadLine());
-                while (choice < 0 || choice > 10)
-                {
-                    Console.WriteLine("inavailable option!");
-                    Console.WriteLine("Enter Your Choice: ");
-                    choice = int.Parse(Console.ReadLine());
-                }
+                choice = _readChoice();
+
                 Console.WriteLine();
                 Console.WriteLine();
                 _mainMenuPerformance((enOption)choice, company);
             } while (choice != 0);
-            
+
 
         }
-      
     }
 }
